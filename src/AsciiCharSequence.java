@@ -1,3 +1,4 @@
+import java.io.UnsupportedEncodingException;
 import java.lang.CharSequence;
 import java.util.Arrays;
 /**
@@ -19,34 +20,33 @@ import java.util.Arrays;
  * Тем более мы еще не проходили исключения.
  * */
 public class AsciiCharSequence implements CharSequence {
-    byte[] mb;
-
-    public AsciiCharSequence(byte... mb) {
+    private byte[] mb;//Создаём массив
+    //КОНСТРУКТОР
+    public AsciiCharSequence(byte[] mb) {
         this.mb = mb;
     }
 
+    //РЕАЛИЗАЦИЯ ИНТЕРФЕЙСА (Метод возвращает длину массива)
     @Override
     public int length() {//
         return this.mb.length;
     }
 
-    @Override
+    @Override //version 2
     public String toString() {
-        StringBuilder str = new StringBuilder("");
-        for (int i = 0; i < this.mb.length; ++i){
-            str = str.append(String.valueOf((char) this.mb[i]));
-        }
-        return str.toString();
+           /*String str = new String(this.mb, "UTF-8");*/
+           String str = new String(this.mb);
+        return  str;
     }
 
     @Override
     public char charAt(int index){
-        return (char) (97 + index);
+        return (char)(this.mb[index]);
     }
 
     @Override
     public CharSequence subSequence(int start, int end) {
-        return new AsciiCharSequence(Arrays.copyOfRange(mb, start, end));
+        return new AsciiCharSequence(Arrays.copyOfRange(this.mb, start, end));//
     }
 
 }

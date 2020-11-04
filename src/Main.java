@@ -1,4 +1,9 @@
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
 import java.util.Arrays;
+
+import static java.lang.System.*;
 
 /**
  * Напишите статический класс AsciiCharSequence,
@@ -20,12 +25,13 @@ import java.util.Arrays;
  * */
 public class Main {
     public static void main(String[] args) {
-
-        AsciiCharSequence asciiCharSequence = new AsciiCharSequence((byte)97, (byte)98,(byte)99,
-                (byte)100, (byte)101, (byte)102, (byte)103, (byte)104, (byte)105, (byte)106);
-        System.out.println("Длина массива\t" + asciiCharSequence.length());
-        System.out.println("Символ из массива\t" + asciiCharSequence.charAt(5));
-        System.out.println("Последовательность символов из массива\n" + asciiCharSequence.toString());
-
+        int start = 2;
+        int end = 16;
+        byte[] mbs = new byte[]{95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115};
+        out.println(Arrays.toString(mbs));
+        AsciiCharSequence aCh1 = new AsciiCharSequence(mbs);
+        out.println(aCh1.subSequence(start, end).toString());
+        out.println(aCh1.subSequence(start, end).length());
+        out.println(aCh1.subSequence(start, end).charAt(5));
     }
 }
